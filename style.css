@@ -1,9 +1,9 @@
-/* style.css – Vibrant Rigvedic Quiz Theme */
+/* style.css – Vibrant Rigvedic Quiz Theme (Left-Aligned Version) */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500&display=swap');
 
 :root {
-  --bg-gradient: radial-gradient(circle at top, #240046, #000);
+  --bg-gradient: radial-gradient(circle at top left, #240046, #000);
   --gold: #f9d65c;
   --amber: #ff9f1c;
   --crimson: #e63946;
@@ -19,12 +19,14 @@ body {
   background-attachment: fixed;
   line-height: 1.6;
   overflow-x: hidden;
+  padding-left: 60px;
+  padding-right: 40px;
 }
 
 /* ---------- HEADER ---------- */
 header {
-  text-align: center;
-  padding: 60px 20px 40px;
+  text-align: left;
+  padding: 60px 0 40px;
   animation: fadeIn 1.8s ease;
 }
 
@@ -35,70 +37,58 @@ h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: textGlow 5s ease-in-out infinite alternate;
+  margin-bottom: 12px;
 }
 
 .intro {
   max-width: 700px;
-  margin: 10px auto;
-  color: #ccc;
-  font-size: 1.1em;
+  color: #ddd;
+  font-size: 1.05em;
 }
 
 /* ---------- QUIZ QUESTIONS ---------- */
 #quiz {
-  /* Left align questions and answers for clean margin */
-.question {
+  max-width: 900px;
+  padding-bottom: 60px;
   text-align: left;
-}
-
-.question p {
-  text-align: left;
-}
-
-label {
-  text-align: left;
-  display: block;
-  margin-left: 15px;
-}
-
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px 30px 60px;
 }
 
 .question {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 4px solid var(--gold);
+  border-radius: 10px;
   padding: 20px 25px;
   margin-bottom: 25px;
-  box-shadow: 0 0 15px rgba(255, 204, 0, 0.08);
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.4s ease;
 }
 
 .question:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 20px rgba(255, 204, 0, 0.15);
+  transform: translateX(6px);
+  box-shadow: 0 0 18px rgba(255, 204, 0, 0.15);
 }
 
 .question p {
-  font-size: 1.1em;
+  font-size: 1.15em;
   color: var(--gold);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  font-weight: 500;
 }
 
 label {
   display: block;
   margin-bottom: 8px;
   padding: 6px 10px;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
+  text-align: left;
 }
 
 label:hover {
   background: rgba(255, 255, 255, 0.1);
-  transform: scale(1.02);
+  transform: scale(1.01);
 }
 
 input[type="radio"] {
@@ -113,7 +103,7 @@ button {
   color: white;
   border: none;
   padding: 12px 28px;
-  margin: 15px 10px;
+  margin: 20px 10px 20px 0;
   border-radius: 30px;
   font-weight: 600;
   font-size: 1.1em;
@@ -123,7 +113,7 @@ button {
 }
 
 button:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px);
   box-shadow: 0 0 20px rgba(255, 204, 51, 0.8);
 }
 
@@ -134,29 +124,30 @@ button:hover {
 /* ---------- RESULT BOX ---------- */
 #result {
   margin-top: 50px;
-  padding: 30px;
-  text-align: center;
+  padding: 25px 20px 40px;
+  text-align: left;
   animation: fadeIn 1s ease;
 }
 
 .result-box {
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 18px;
-  padding: 30px;
-  box-shadow: 0 0 25px rgba(249, 214, 92, 0.15);
+  border-left: 4px solid var(--amber);
+  border-radius: 14px;
+  padding: 25px 30px;
+  box-shadow: 0 0 25px rgba(249, 214, 92, 0.1);
   animation: slideUp 1s ease;
+  max-width: 750px;
 }
 
 .result-box h2 {
   font-family: "Playfair Display", serif;
-  font-size: 1.8em;
+  font-size: 1.9em;
   color: var(--gold);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .result-box h3 {
-  font-size: 1.3em;
+  font-size: 1.25em;
   color: var(--amber);
   margin-top: 0;
 }
@@ -165,11 +156,12 @@ button:hover {
   font-size: 1.05em;
   color: #eaeaea;
   margin-bottom: 12px;
+  max-width: 650px;
 }
 
 .result-box blockquote {
   font-style: italic;
-  margin: 20px auto;
+  margin: 20px 0;
   padding: 10px 20px;
   border-left: 4px solid var(--amber);
   color: var(--gold);
@@ -189,12 +181,16 @@ button:hover {
 }
 
 @keyframes textGlow {
-  from { text-shadow: 0 0 8px rgba(249, 214, 92, 0.5); }
-  to { text-shadow: 0 0 18px rgba(255, 100, 100, 0.8); }
+  from { text-shadow: 0 0 6px rgba(249, 214, 92, 0.4); }
+  to { text-shadow: 0 0 18px rgba(255, 100, 100, 0.9); }
 }
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 600px) {
+  body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   h1 {
     font-size: 2em;
   }
