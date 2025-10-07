@@ -1,139 +1,81 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const quizData = [
-    {
-      question: "When faced with a difficult life decision, your first instinct is to...",
-      options: [
-        { text: "Step back and seek a deeper meaning behind the situation.", archetype: "Seer" },
-        { text: "Take immediate action and handle whatever comes next.", archetype: "Warrior" },
-        { text: "Ask how this will affect the people you care about.", archetype: "Nurturer" },
-        { text: "Reflect through writing, music, or art to find clarity.", archetype: "Mystic" },
-      ]
-    },
-    {
-      question: "What motivates you to keep going during hard times?",
-      options: [
-        { text: "A burning desire to bring change and challenge the old ways.", archetype: "Rebel" },
-        { text: "A commitment to serve a purpose higher than yourself.", archetype: "Devotee" },
-        { text: "A strong sense of fairness and the need to restore balance.", archetype: "Harmonizer" },
-        { text: "The urge to build or create something lasting.", archetype: "Builder" },
-      ]
-    },
-    {
-      question: "Which environment brings out your best self?",
-      options: [
-        { text: "A calm, sacred space where I can explore spiritual or philosophical questions.", archetype: "Seer" },
-        { text: "A fast-paced, high-stakes setting where decisions must be made quickly.", archetype: "Warrior" },
-        { text: "A collaborative group working toward justice or societal balance.", archetype: "Harmonizer" },
-        { text: "A space for rituals, discipline, or self-purification.", archetype: "Devotee" },
-      ]
-    },
-    {
-      question: "When others come to you for help, what do they usually seek?",
-      options: [
-        { text: "Comfort, safety, and emotional understanding.", archetype: "Nurturer" },
-        { text: "Creative inspiration, artistic ideas, or intuitive insights.", archetype: "Mystic" },
-        { text: "Motivation to break free and take bold steps.", archetype: "Rebel" },
-        { text: "Practical advice on how to build or create something lasting.", archetype: "Builder" },
-      ]
-    },
-    {
-      question: "Which compliment would mean the most to you?",
-      options: [
-        { text: "You always know the deeper meaning behind things.", archetype: "Seer" },
-        { text: "You get things done — no matter the challenge.", archetype: "Warrior" },
-        { text: "You always know how to make others feel safe and loved.", archetype: "Nurturer" },
-        { text: "Your creativity and intuition blow me away.", archetype: "Mystic" },
-      ]
-    },
-    {
-      question: "Which role feels most natural to you in a group project?",
-      options: [
-        { text: "The one who questions old assumptions and pushes new ideas.", archetype: "Rebel" },
-        { text: "The one who maintains fairness and emotional balance.", archetype: "Harmonizer" },
-        { text: "The one who brings focus, discipline, and keeps everyone on track.", archetype: "Devotee" },
-        { text: "The one who creates the structure and builds the actual outcome.", archetype: "Builder" },
-      ]
-    },
-    {
-      question: "What brings you the deepest sense of fulfillment?",
-      options: [
-        { text: "Discovering spiritual or philosophical truths.", archetype: "Seer" },
-        { text: "Winning a hard-fought challenge or defending others.", archetype: "Warrior" },
-        { text: "Being there for someone in their darkest hour.", archetype: "Nurturer" },
-        { text: "Creating beauty or expressing something meaningful.", archetype: "Mystic" },
-      ]
-    },
-    {
-      question: "In a moment of crisis, what instinctively takes over?",
-      options: [
-        { text: "A sudden urge to break the pattern and create a new path.", archetype: "Rebel" },
-        { text: "A calm voice inside that seeks justice and restores order.", archetype: "Harmonizer" },
-        { text: "A fire of purpose — you double down on your discipline.", archetype: "Devotee" },
-        { text: "A practical mind that starts fixing, organizing, or building.", archetype: "Builder" },
-      ]
-    },
-    {
-      question: "Which of these is most important to leave behind?",
-      options: [
-        { text: "A lineage of wisdom, ideas, or spiritual insight.", archetype: "Seer" },
-        { text: "A legacy of protection, bravery, or standing up for others.", archetype: "Warrior" },
-        { text: "Generations of people who felt safe, loved, and cared for.", archetype: "Nurturer" },
-        { text: "Creative works, art, or inspiration that outlives you.", archetype: "Mystic" },
-      ]
-    },
-    {
-      question: "If life gave you a second chance, how would you choose to live it?",
-      options: [
-        { text: "Boldly, questioning norms, forging new beginnings.", archetype: "Rebel" },
-        { text: "Silently, working to restore balance and truth.", archetype: "Harmonizer" },
-        { text: "Devotedly, offering everything to a higher goal.", archetype: "Devotee" },
-        { text: "Productively, crafting useful systems, tools, or shelters.", archetype: "Builder" },
-      ]
-    },
-  ];
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('quiz-form');
+  const resultDiv = document.getElementById('result');
 
-  const quizContainer = document.getElementById("quiz");
-  const resultContainer = document.getElementById("result");
+  const archetypeDetails = {
+    "The Seer": {
+      title: "The Insightful Witness of Truth",
+      description: "You are driven by reflection, stillness, and the deeper questions of life. Like Rishi Vamadeva, you observe before acting, and wisdom flows through your inner silence. Your strength lies in clarity of thought and connection to the eternal.",
+      mantra: "“I was Manu, I was the Sun” —Rigveda 4.26.1",
+      message: "Your path is one of insight. Trust your inner voice, it sees beyond time."
+    },
+    "The Warrior": {
+      title: "The Thunder-Wielder of Change",
+      description: "You are bold, action-oriented, and not afraid to confront what stands in your way. Like Indra who split the clouds to release rain, you fight for progress, protect your people, and challenge stagnation.",
+      mantra: 'Rigveda 1.9.6: “Asmaanstu Tatra Codavendra Raaye Rabhassvatah | Tuviyudhma Yashasvatah ||”',
+      message: "You are a storm with purpose. Lead the charge, but with wisdom."
+    },
+    "The Nurturer": {
+      title: "The Infinite Mother of Boundless Space",
+      description: "You carry warmth, strength, and a quiet resilience. Like Aditi, the primal mother, you hold space for others to grow, heal, and belong. You are deeply intuitive, emotionally wise, and value harmony in relationships.",
+      mantra: '“Aditi is heaven; Aditi is the firmament; Aditi is mother, father and son; Aditi is all the gods; Aditi is all the classes of people; Aditi is genitive ration and birth.” — Rigveda 1.89.10',
+      message: "Your presence is your power. Don’t underestimate the quiet revolutions you bring through care."
+    },
+    "The Mystic": {
+      title: "The River of Creative Revelation",
+      description: "You are poetic, visionary, and drawn to beauty beyond the senses. Like Sarasvati, the divine river of insight, you channel knowledge, art, and rhythm into everything you do. Ideas find you — not the other way around.",
+      mantra: '“May Sarasvati, the inspirer of noble thoughts, be pleased with us” —Rigveda 1.3.10',
+      message: "Flow with your creative currents. Your path is nonlinear, but deeply meaningful."
+    },
+    "The Rebel": {
+      title: "The Dawning Light of New Beginnings",
+      description: "You are bold, radiant, and unafraid to break patterns. Like Ushas, the dawn goddess, you usher in change — even when it’s uncomfortable. You challenge norms, awaken others, and bring freshness wherever you go.",
+      mantra: '“She shines with the light of truth, awakening all beings to action.” — Rigveda 1.48.1',
+      message: "Trust your inner sunrise. You are here to disrupt and renew — let that light rise."
+    },
+    "The Devotee": {
+      title: "The Sacred Flame of Discipline and Devotion",
+      description: "You are focused, inwardly strong, and driven by purpose. Like Agni, the fire priest, you burn with clarity and commitment — to ideals, goals, or a higher calling. You thrive in routine, ritual, and self-transformation.",
+      mantra: '“I glorify Agni, the high priest of the sacrifice, the divine, the ministrant, who presents the oblation (to the gods), and is the possessor of great wealth” — Rigveda 1.1.1',
+      message: "Your fire purifies. Stay dedicated to your path — you’re lighting the way."
+    },
+    "The Harmonizer": {
+      title: "The Keeper of Cosmic Order",
+      description: "You value justice, balance, and quiet authority. Like Varuna, the upholder of ṛta (cosmic order), you sense what’s right and act to restore it. You see the bigger picture and often carry unspoken wisdom — guiding others not by noise, but by clarity.",
+      mantra: '“I proclaim this great device of the renowned Varuna, the destroyer of the Asuras, who, abiding in the mid-heaven, has meted the firmament by the sun, as if by a measure.” — Rig Veda 5.85.5',
+      message: "Your strength is in restoring equilibrium. Trust your sense of truth — it’s ancient."
+    },
+    "The Builder": {
+      title: "The Artisan of Possibility",
+      description: "You are inventive, resourceful, and grounded in doing. Like Tvastar, the celestial craftsman, you build the future — one idea, tool, or structure at a time. You blend creativity with precision, vision with execution.",
+      mantra: '“To the divine Tvasṭā, who decked the parental heaven and earth and all the worlds with living forms, to him, O priest, who are venerable and wise, being solicited by us, offer oblation here today.” — Rigveda 10.110.9',
+      message: "Creation flows through your hands. Make what only you can — the world needs it."
+    }
+  };
 
-  quizData.forEach((item, index) => {
-    const questionDiv = document.createElement("div");
-    questionDiv.classList.add("question-block");
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const answers = Array.from(formData.values());
 
-    const questionEl = document.createElement("h3");
-    questionEl.innerText = `Q${index + 1}. ${item.question}`;
-    questionDiv.appendChild(questionEl);
+    const scoreMap = {};
 
-    item.options.forEach((option, optIndex) => {
-      const label = document.createElement("label");
-      const input = document.createElement("input");
-      input.type = "radio";
-      input.name = `q${index}`;
-      input.value = option.archetype;
-
-      label.appendChild(input);
-      label.append(` ${option.text}`);
-      questionDiv.appendChild(label);
-      questionDiv.appendChild(document.createElement("br"));
-    });
-
-    quizContainer.appendChild(questionDiv);
-  });
-
-  document.getElementById("submit").addEventListener("click", () => {
-    const scores = {};
-
-    quizData.forEach((_, index) => {
-      const selected = document.querySelector(`input[name=q${index}]:checked`);
-      if (selected) {
-        const archetype = selected.value;
-        scores[archetype] = (scores[archetype] || 0) + 1;
+    answers.forEach(answer => {
+      if (!scoreMap[answer]) {
+        scoreMap[answer] = 0;
       }
+      scoreMap[answer]++;
     });
 
-    const topArchetype = Object.entries(scores).sort((a, b) => b[1] - a[1])[0]?.[0];
+    const topArchetype = Object.entries(scoreMap).sort((a, b) => b[1] - a[1])[0][0];
+    const profile = archetypeDetails[topArchetype];
 
-    resultContainer.innerText = topArchetype
-      ? `You are most like: ${topArchetype}`
-      : "Please answer all questions.";
+    resultDiv.innerHTML = `
+      <h2>You are most like: ${topArchetype}</h2>
+      <h3>${profile.title}</h3>
+      <p><strong>Description:</strong> ${profile.description}</p>
+      <p><strong>Mantra:</strong> ${profile.mantra}</p>
+      <p><strong>Message:</strong> ${profile.message}</p>
+    `;
   });
 });
